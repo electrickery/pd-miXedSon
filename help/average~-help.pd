@@ -1,4 +1,4 @@
-#N canvas 524 79 569 531 10;
+#N canvas 20 533 569 531 10;
 #X obj 0 602 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 1 295 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -50,11 +50,8 @@ RMS mode in many level-detection tasks.;
 #X msg 238 73 bipolar;
 #X msg 294 73 absolute;
 #X obj 149 99 *~;
-#X floatatom 149 268 5 0 0 0 - - -;
+#X floatatom 149 268 5 0 0 0 - - -, f 5;
 #X text 102 329 message;
-#X text 169 414 average~ reports the running mean amplitude of a signal
-\, averaged over a specified number of samples. There are three methods
-of averaging available:;
 #X obj 495 2 average~;
 #X text 89 479 1) float - sets maximum averaging interval. default
 is 100 2) message - sets mode \, as shown above. default is bipolar.
@@ -63,7 +60,7 @@ is 100 2) message - sets mode \, as shown above. default is bipolar.
 ;
 #X text 102 377 float;
 #X obj 83 153 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 4663 1;
+-1 -1 6059 1;
 #X msg 343 137 500;
 #X msg 375 137 1000;
 #X msg 311 137 10;
@@ -74,15 +71,18 @@ is 100 2) message - sets mode \, as shown above. default is bipolar.
 #X text 169 359 - rms: -sets roor mean square (RMS) average mode.;
 #X text 169 307 - the signal to average;
 #X text 169 377 - the number of samples the average is applied to;
+#X text 169 414 average~ reports the running mean amplitude of a signal
+\, averaged over a specified number of samples. There are three methods
+of averaging available: bipolar \, absolute and rms.;
 #X connect 13 0 19 1;
 #X connect 14 0 19 0;
-#X connect 15 0 31 0;
-#X connect 16 0 31 0;
-#X connect 17 0 31 0;
-#X connect 18 0 31 0;
-#X connect 19 0 31 0;
-#X connect 28 0 31 0;
-#X connect 29 0 31 0;
-#X connect 30 0 31 0;
-#X connect 31 0 20 0;
-#X connect 31 0 27 0;
+#X connect 15 0 30 0;
+#X connect 16 0 30 0;
+#X connect 17 0 30 0;
+#X connect 18 0 30 0;
+#X connect 19 0 30 0;
+#X connect 27 0 30 0;
+#X connect 28 0 30 0;
+#X connect 29 0 30 0;
+#X connect 30 0 20 0;
+#X connect 30 0 26 0;

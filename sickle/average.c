@@ -5,6 +5,25 @@
 /* CHECKME no reset after changing of a window size? */
 /* CHECKME overlap */
 
+
+/*
+- a circulair buffer the size of maxBufSize, initially filled with 0s
+- a value bufSize
+- a value aa absoluteAverage(buffer[bufSize])
+- a value ba bipolarAverage(buffer[bufSize])
+- a value ra rmsAverage(buffer[bufSize])
+for each sample:
+  - add the sample to the circular buffer
+  - add absolute(buffer[head]/bufSize)      to aa
+  - subtract absolute(buffer[tail]/bufSize) to aa
+  - add buffer[head]/bufSize      to ba
+  - subtract buffer[head]/bufSize to ba
+  - add (buffer[head] * buffer[head]) / bufSize      to ra
+  - subtract (buffer[tail] * buffer[tail]) / bufSize to ra
+  - head++
+  - tail++
+ * /
+
 #include <math.h>
 #include "m_pd.h"
 #include "common/loud.h"
@@ -29,6 +48,11 @@ typedef struct _average
     float     x_result;
     float     x_accum;
     t_clock  *x_clock;
+    
+    t_float  *x_buf;
+    int       x_range;
+    int       x_head;
+    int       x_tail;
 } t_average;
 
 static t_class *average_class;
