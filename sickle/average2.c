@@ -12,6 +12,7 @@
 #include <math.h>
 #include "m_pd.h"
 #include "common/loud.h"
+#include "common/cheapsqrt.h"
 #include "sickle/sic.h"
 #include "shared.h"
 
@@ -31,7 +32,6 @@ typedef struct _average
     int       x_mode;
     int       x_bufferSize;
     int       x_sample_interval;
-int       x_result;
     
     t_float   x_bipolarSum;
     t_float   x_absoluteSum;
@@ -55,7 +55,6 @@ static void average_status(t_average *x)
     post("x_bipolarSum: %f",      x->x_bipolarSum);
     post("x_absoluteSum: %f",     x->x_absoluteSum);
     post("x_rmsSum: %f",          x->x_rmsSum);
-post("x_result: %i",          x->x_result);    
     int major, minor, bugfix;
     sys_getversion(&major, &minor, &bugfix);
     post("sys version: %i.%i.%i", major, minor, bugfix);
@@ -110,12 +109,11 @@ static void average_calculateFromScratch(t_average *x)
     x->x_bipolarSum  = 0;
     x->x_absoluteSum = 0;
     x->x_rmsSum      = 0;
-x->x_result++;
+    int offset = x->x_tail + 1;
     
     for (i = 0; i < x->x_sample_interval; i++)
     {
-        j = x->x_buffer[x->x_tail] + i;
-        if (j >= x->x_bufferSize) j -= x->x_bufferSize;
+        j = (offset + i >= x->x_bufferSize) ? offset + i - x->x_bufferSize : offset + i;
         x->x_bipolarSum  += x->x_buffer[j];
         x->x_absoluteSum += (x->x_buffer[j] > 0) ? x->x_buffer[j] : -x->x_buffer[j];
         x->x_rmsSum      += x->x_buffer[j] * x->x_buffer[j];
@@ -130,13 +128,12 @@ static t_int *average_perform(t_int *w)
     t_float *out = (t_float *)(w[4]);
     t_float tailValue;
     int blockSize = nblock;
-    
     while (nblock--) {
-        x->x_buffer[x->x_head] = *in;
-        if (blockSize == nblock + 1) 
-            average_calculateFromScratch(x);
-        else
+        x->x_buffer[x->x_head] = *in++;
+        if (nblock + 1 == blockSize) 
         {
+            average_calculateFromScratch(x); 
+        } else {
             tailValue         = x->x_buffer[x->x_tail];
             x->x_bipolarSum  += *in;
             x->x_bipolarSum  -= tailValue;
@@ -150,15 +147,14 @@ static t_int *average_perform(t_int *w)
         else if (x->x_mode == AVERAGE_ABSOLUTE)
             *out++ = x->x_absoluteSum / x->x_sample_interval;
         else // AVERAGE_RMS
-            *out++ = x->x_rmsSum / x->x_sample_interval;
+            *out++ = cheapsqrt(x->x_rmsSum / x->x_sample_interval);
         x->x_head++;
         x->x_tail++;
-        if (x->x_head > x->x_bufferSize)
+        if (x->x_head >= x->x_bufferSize)
             x->x_head = 0;
-        if (x->x_tail > x->x_bufferSize)
+        if (x->x_tail >= x->x_bufferSize)
             x->x_tail = 0;
-        }
-    
+    }
     return (w + 5);
 }
 
@@ -209,7 +205,6 @@ static void *average_new(t_symbol *s, t_floatarg f)
     x->x_head = AVERAGE_DEF_SAMPLE_INTERVAL;
     x->x_tail = 0;
     x->x_sample_interval = AVERAGE_DEF_SAMPLE_INTERVAL;
-x->x_result = 0;
     
     outlet_new(&x->x_sic, &s_signal);
     return (x);

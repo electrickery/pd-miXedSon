@@ -3,6 +3,8 @@
 
 
 // Fast square root method as described by Chris Lomont and Charles McEniry
+// Converted from inverse square root to square root calculation by
+// Katja Vetter. Supports both single and double float types
 
 #include "m_pd.h"
 

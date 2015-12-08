@@ -192,3 +192,4 @@ void average_tilde_setup(void)
 		    gensym("absolute"), 0);
     class_addmethod(average_class, (t_method)average_rms,
 		    gensym("rms"), 0);
+}
