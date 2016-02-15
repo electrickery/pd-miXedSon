@@ -4,6 +4,7 @@
 
 #include "m_pd.h"
 #include "sickle/sic.h"
+#include "shared.h"
 #define MILLIS 0.001
 
 typedef struct _mstosamps
@@ -17,14 +18,8 @@ typedef struct _mstosamps
 
 static t_class *mstosamps_class;
 
-/*static void mstosamps_float(t_mstosamps *x, t_float f)
-{
-    outlet_float(x->x_floatout, x->x_sampleCount);
-} */
-
 static void mstosamps_tick(t_mstosamps *x)
 {
-//    outlet_float(((t_object *)x)->x_floatout, x->x_sampleCount);
     outlet_float(x->x_floatout, x->x_sampleCount);
 }
 
@@ -73,6 +68,10 @@ void mstosamps_tilde_setup(void)
 				(t_newmethod)mstosamps_new, 
                                 (t_method)mstosamps_free,
 				sizeof(t_mstosamps), 0, 0);
-//    sic_setup(mstosamps_class, mstosamps_dsp, mstosamps_float);
-    sic_setup(mstosamps_class, mstosamps_dsp, 0);
+    sic_setup(mstosamps_class, mstosamps_dsp, SIC_FLOATTOSIGNAL);
+    int major, minor, bugfix;
+    sys_getversion(&major, &minor, &bugfix);
+    if (major > 0 || minor > 42) 
+        logpost(NULL, 4, "this is cyclone/mstosamps~ %s, %dth %s build",
+            CYCLONE_VERSION, CYCLONE_BUILD, CYCLONE_RELEASE);    
 }

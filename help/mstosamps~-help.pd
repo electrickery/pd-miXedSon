@@ -1,4 +1,4 @@
-#N canvas 527 80 558 489 10;
+#N canvas 581 79 558 489 10;
 #X obj 0 461 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 287 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -26,9 +26,10 @@ adapted the patch to pd-extended 2015-02-02;
 ;
 #X obj 0 405 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
 0;
-#N canvas 319 385 428 109 Related_objects 0;
+#N canvas 317 386 428 109 Related_objects 0;
 #X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
 #X text 6 1 Related Objects;
+#X obj 8 31 cyclone/sampstoms~;
 #X restore 205 463 pd Related_objects;
 #X obj 79 298 cnv 17 3 35 empty empty 0 5 9 0 16 -228856 -162280 0
 ;
@@ -39,7 +40,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X obj 479 6 mstosamps~;
 #X msg 286 74 0 \, 1000 3000;
 #X floatatom 286 257 0 0 0 0 - - -;
-#X floatatom 155 231 0 0 0 0 - - -;
+#X floatatom 155 220 0 0 0 0 - - -;
 #X floatatom 50 98 0 0 0 0 - - -;
 #X text 278 49 or convert signal values;
 #X text 340 258 number of samples;
@@ -56,14 +57,14 @@ adapted the patch to pd-extended 2015-02-02;
 #X text 12 23 Convert milliseconds to number of samples;
 #X text 47 50 Use as a calculator;
 #X text 47 62 or for float parameters;
-#X obj 50 164 cyclone/mstosamps~;
-#X obj 286 164 cyclone/mstosamps~;
+#X obj 50 160 cyclone/mstosamps~;
+#X obj 286 160 cyclone/mstosamps~;
 #X obj 286 235 cyclone/Snapshot~ 100;
 #X obj 519 252 dspSwitch~;
 #X obj 286 94 cyclone/Line~;
-#X floatatom 20 231 0 0 0 0 - - -;
-#X obj 20 209 cyclone/Snapshot~ 100;
-#X floatatom 396 197 8 0 0 0 - - -, f 8;
+#X floatatom 51 263 0 0 0 0 - - -;
+#X obj 51 241 cyclone/Snapshot~ 100;
+#X floatatom 391 216 8 0 0 0 - - -, f 8;
 #X text 179 379 - number of samples (equal to the last sample of the
 block);
 #X connect 10 0 32 0;
