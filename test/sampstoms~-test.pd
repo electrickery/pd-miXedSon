@@ -1,0 +1,8 @@
+#N canvas 952 316 450 300 10;
+#X floatatom 32 83 0 0 0 0 - - -;
+#X obj 32 143 cyclone/sampstoms~;
+#X obj 33 176 cyclone/mstosamps~;
+#X floatatom 35 207 5 0 0 0 - - -, f 5;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 1 3 0;
