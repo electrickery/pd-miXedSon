@@ -1,4 +1,4 @@
-#N canvas 615 83 558 489 10;
+#N canvas 527 80 558 489 10;
 #X obj 0 461 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 287 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -42,7 +42,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X floatatom 155 231 0 0 0 0 - - -;
 #X floatatom 50 98 0 0 0 0 - - -;
 #X text 278 49 or convert signal values;
-#X text 327 260 number of samples;
+#X text 340 258 number of samples;
 #X text 112 297 float;
 #X text 179 297 - number of milliseconds;
 #X text 112 318 signal;
@@ -51,7 +51,6 @@ adapted the patch to pd-extended 2015-02-02;
 #X text 179 357 - number of samples out (as signal);
 #X text 112 426 (none);
 #X text 112 379 float;
-#X text 179 379 - number of samples (given float);
 #X obj 81 379 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
 ;
 #X text 12 23 Convert milliseconds to number of samples;
@@ -62,9 +61,17 @@ adapted the patch to pd-extended 2015-02-02;
 #X obj 286 235 cyclone/Snapshot~ 100;
 #X obj 519 252 dspSwitch~;
 #X obj 286 94 cyclone/Line~;
-#X connect 10 0 33 0;
-#X connect 13 0 29 0;
-#X connect 29 1 12 0;
-#X connect 30 0 31 0;
-#X connect 31 0 11 0;
-#X connect 33 0 30 0;
+#X floatatom 20 231 0 0 0 0 - - -;
+#X obj 20 209 cyclone/Snapshot~ 100;
+#X floatatom 396 197 8 0 0 0 - - -, f 8;
+#X text 179 379 - number of samples (equal to the last sample of the
+block);
+#X connect 10 0 32 0;
+#X connect 13 0 28 0;
+#X connect 28 0 34 0;
+#X connect 28 1 12 0;
+#X connect 29 0 30 0;
+#X connect 29 1 35 0;
+#X connect 30 0 11 0;
+#X connect 32 0 29 0;
+#X connect 34 0 33 0;
