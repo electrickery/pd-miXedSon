@@ -1,8 +1,8 @@
-This is no longer the main repository for the Pure Data library cyclone. See https://github.com/porres/pd-cyclone.
+This is a forked version of https://svn.code.sf.net/p/pure-data/svn/trunk/externals/miXed/cyclone. For active development see https://github.com/porres/pd-cyclone. The local repository is in 'maintainance' only mode.
 
 <hr>
 
-pd-cyclone is a 'fork' of the https://git.puredata.info/cgit/svn2git/libraries/miXed.git/ migrated repository. It is cleaned to contain only the cyclone functionality. Other parts of the miXed library are either moved (pddp) or unmaintained (toxy, ViCious, riddle).
+pd-cyclone is a 'fork' of https://svn.code.sf.net/p/pure-data/svn/trunk/externals/miXed/cyclone (via the https://git.puredata.info/cgit/svn2git/libraries/miXed.git/ migrated repository). It is cleaned to contain only the cyclone functionality. Other parts of the miXed library are either moved (pddp) or unmaintained (toxy, ViCious, riddle).
 
 Within the cyclone file set, the transition to a new build system, started with 0.1-alpha57 is completed. The initial version at this github repository will be 0.2beta1.
 
