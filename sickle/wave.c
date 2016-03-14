@@ -159,6 +159,9 @@ void wave_tilde_setup(void)
 		    gensym("set"), A_SYMBOL, 0);
     class_addmethod(wave_class, (t_method)wave_interp,
 		    gensym("interp"), A_FLOAT, 0);
-//    logpost(NULL, 4, "this is cyclone/wave~ %s, %dth %s build",
-//	 CYCLONE_VERSION, CYCLONE_BUILD, CYCLONE_RELEASE);
+
+    int major, minor, bugfix;
+    sys_getversion(&major, &minor, &bugfix);    if (major > 0 || minor > 42) 
+    logpost(NULL, 4, "this is cyclone/wave~ %s, %dth %s build",
+	 CYCLONE_VERSION, CYCLONE_BUILD, CYCLONE_RELEASE);
 }
