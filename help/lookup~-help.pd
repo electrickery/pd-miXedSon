@@ -1,4 +1,4 @@
-#N canvas 478 79 568 529 10;
+#N canvas 497 80 568 529 10;
 #X obj 0 577 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 345 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -38,7 +38,7 @@ adapted the patch to pd-extended 2015-02-02;
 ;
 #X obj 500 5 lookup~;
 #X text 12 23 transfer function lookup table;
-#X text 257 46 play with it a little:;
+#X text 258 42 play with it a little:;
 #X text 118 353 signal;
 #X text 183 353 - signal to do transfer function lookup;
 #X obj 87 435 cnv 17 3 17 empty empty 2 5 9 0 16 -228856 -162280 0
@@ -76,7 +76,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X connect 8 0 6 0;
 #X restore 97 165 pd mux;
 #X obj 158 126 vradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
+-1 -1 0;
 #X text 175 122 osc~;
 #X text 175 141 phasor~;
 #X obj 157 98 phasor~ 1;
@@ -91,7 +91,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X restore 380 238 pd visualise;
 #X floatatom 97 76 5 0 0 0 - - -, f 5;
 #X text 101 517 1) symbol;
-#N canvas 394 692 433 286 load 0;
+#N canvas 392 693 433 286 load 1;
 #X obj 120 110 soundfiler;
 #X obj 120 61 f \$0;
 #X obj 120 27 loadbang;
@@ -100,7 +100,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X obj 1 2 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
 #X text 4 3 Load the voice.wav file;
 #X obj 120 150 table \$0-voice;
-#X obj 212 151 table \$0-silent;
+#X obj 121 172 table \$0-dummy;
 #X connect 0 0 4 0;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
@@ -126,18 +126,18 @@ adapted the patch to pd-extended 2015-02-02;
 #X text 183 552 - initial end-point array/table (default 512);
 #X text 183 404 - offset in the array/table;
 #X obj 376 205 hsl 160 15 -1 1 0 0 empty \$0-slider empty -2 -8 0 10
--262144 -1 -1 1230 1;
+-262144 -1 -1 15614 1;
 #X text 366 190 "continous soft and relaxing";
 #X text 183 374 - sets the used array/table to <arg>;
 #X text 118 374 set <arg>;
-#X msg 287 117 set \$1-voice;
-#X obj 287 95 f \$0;
-#X obj 287 76 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 327 83 \$0;
+#X obj 307 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 370 95 f \$0;
-#X obj 370 76 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X msg 307 103 set \$1-dummy;
+#X obj 414 83 \$0;
+#X obj 394 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 370 117 set \$1-silent;
+#X msg 394 103 set \$1-voice;
 #X connect 22 0 27 0;
 #X connect 22 0 35 0;
 #X connect 23 0 22 2;
@@ -155,9 +155,9 @@ adapted the patch to pd-extended 2015-02-02;
 #X connect 40 0 35 1;
 #X connect 42 0 22 0;
 #X connect 43 0 26 0;
-#X connect 53 0 35 0;
+#X connect 53 0 55 0;
 #X connect 54 0 53 0;
-#X connect 55 0 54 0;
+#X connect 55 0 35 0;
 #X connect 56 0 58 0;
 #X connect 57 0 56 0;
 #X connect 58 0 35 0;
