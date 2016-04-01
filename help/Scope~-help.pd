@@ -1,4 +1,4 @@
-#N canvas 950 149 574 532 10;
+#N canvas 390 99 574 532 10;
 #X obj 0 959 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 407 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -34,7 +34,6 @@ adapted the patch to pd-extended 2015-02-02;
 #X text 12 23 Graphic Signal Display;
 #X text 99 416 signal;
 #X text 265 417 - signal to display;
-#X text 99 463 buffsize <int>;
 #X text 99 504 range <int> <int>;
 #X text 265 504 - change range of display;
 #X text 99 525 frgb <int> <int> <int>;
@@ -170,19 +169,20 @@ color (102 \, 255 \, 51) \, 14/16-background color (135 \, 135 \, 135)
 #X restore 172 382 pd powOf2;
 #X text 98 856 The Max scope~ object has no arguments \, but many attributes.
 ;
-#X connect 20 0 40 0;
-#X connect 20 0 63 0;
-#X connect 22 0 19 0;
-#X connect 26 0 19 0;
-#X connect 27 0 26 0;
-#X connect 30 0 19 0;
-#X connect 31 0 32 0;
-#X connect 31 0 33 0;
-#X connect 32 0 19 0;
-#X connect 40 0 66 0;
-#X connect 44 0 19 0;
-#X connect 45 0 19 0;
-#X connect 47 0 19 0;
-#X connect 62 0 66 1;
-#X connect 66 0 19 0;
-#X connect 70 0 72 0;
+#X text 99 463 bufsize <int>;
+#X connect 19 0 39 0;
+#X connect 19 0 62 0;
+#X connect 21 0 18 0;
+#X connect 25 0 18 0;
+#X connect 26 0 25 0;
+#X connect 29 0 18 0;
+#X connect 30 0 31 0;
+#X connect 30 0 32 0;
+#X connect 31 0 18 0;
+#X connect 39 0 65 0;
+#X connect 43 0 18 0;
+#X connect 44 0 18 0;
+#X connect 46 0 18 0;
+#X connect 61 0 65 1;
+#X connect 65 0 18 0;
+#X connect 69 0 71 0;
