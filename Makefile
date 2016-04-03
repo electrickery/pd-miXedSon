@@ -416,3 +416,7 @@ ifeq ($(uname), Linux)
         ln -s -f Snapshot~-help.pd snapshot~-help.pd
 endif
 
+SHARED_DIR=shared
+cyclist: $(SHARED_DIR)/common/binport.c \
+	$(SHARED_DIR)/common/lex.c $(SHARED_DIR)/unstable/standalone.c 
+	$(CC) -I$(SHARED_DIR) -DMIXED_STANDALONE $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^

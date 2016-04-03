@@ -462,7 +462,6 @@ static t_symbol *binport_makesymbol(t_binport *bp, int id)
 static int binport_setbysymtable(t_binport *bp, t_atom *ap, int id)
 {
     t_symbol *s;
-    if(id<0) return 0;
     if (id < bp->b_nsymbols)
 	s = bp->b_symtable[id];
     else
@@ -809,6 +808,14 @@ void binport_write(t_binbuf *bb, char *filename, char *dirname)
 
 #else
 
+void binport_usage()
+{
+        binport_warning("Cyclist converts binary Max 4.x patches to Max text format.");
+        binport_warning("These can be read into Pure Data.");
+        binport_warning("Usage: cyclist MaxBinPatch > MaxTxtPatch");
+        return;
+}
+
 int main(int ac, char **av)
 {
     if (ac > 1)
@@ -847,7 +854,11 @@ int main(int ac, char **av)
 	}
 	else binport_error("cannot open file \"%s\"", av[1]);
     }
-    else binport_error("what file?");
+    else 
+    {
+//            binport_error("what file?");
+            binport_usage();
+    }
     return (0);
 }
 
