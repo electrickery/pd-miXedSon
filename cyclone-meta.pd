@@ -7,7 +7,7 @@
 #X text 16 52 DESCRIPTION variable size wavetable;
 #X text 16 88 INLET_1 float signal;
 #X text 16 106 INLET_2 float signal;
-#X text 15 160 VERSION 0.1-alpha56;
+#X text 15 160 VERSION 0.2-beta1;
 #X text 15 178 AUTHOR Krzysztof Czaja;
 #X text 16 196 RELEASE_DATE 2002;
 #X text 17 215 WEBSITE http://suita.chopin.edu.pl/~czaja/miXed/externs/cyclone.html
