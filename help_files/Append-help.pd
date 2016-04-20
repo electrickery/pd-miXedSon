@@ -20,7 +20,6 @@
 #X msg 257 149 set FOO BAR;
 #X msg 214 128 2;
 #X msg 247 128 3 4 5;
-#X obj 126 203 cyclone/Append FOO;
 #X obj 463 275 cnv 12 73 19 empty empty empty 0 0 0 18 -257983 -1 0
 ;
 #N canvas 178 96 715 423 Examples 0;
@@ -142,10 +141,11 @@ f 60;
 #X obj 166 256 cyclone/comment 30 11 helvetica ? 0 80 80 80 <----;
 #X obj 193 256 cyclone/comment 79 11 helvetica ? 0 80 80 80 see results
 of print object in Pd main window;
-#X connect 9 0 15 0;
-#X connect 10 0 15 0;
-#X connect 11 0 15 0;
-#X connect 12 0 15 0;
-#X connect 13 0 15 0;
-#X connect 14 0 15 0;
-#X connect 15 0 8 0;
+#X obj 126 203 cyclone/append FOO;
+#X connect 9 0 45 0;
+#X connect 10 0 45 0;
+#X connect 11 0 45 0;
+#X connect 12 0 45 0;
+#X connect 13 0 45 0;
+#X connect 14 0 45 0;
+#X connect 45 0 8 0;
