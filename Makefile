@@ -8,6 +8,7 @@ cflags = -Ishared -DHAVE_STRUCT_TIMESPEC
 uname := $(shell uname -s)
 ifeq (MINGW,$(findstring MINGW,$(uname)))
     ldlibs += -lpthread
+    exe.extension = .exe
 endif
 
 ################################################################################
@@ -353,8 +354,7 @@ help/test.mid \
 help/voice.wav \
 LICENSE.txt \
 README.md \
-cyclone-meta.pd \
-$(wildcard abstractions/*.pd)
+cyclone-meta.pd
 
 
 ################################################################################
@@ -375,7 +375,7 @@ include $(firstword $(wildcard Makefile.pdlibbuilder \
 ### cyclone extra targets ######################################################
 ################################################################################
 
-install: install-aliases
+install: install-aliases install-cyclist
 
 # on Linux, add symbolic links for lower case aliases
 install-aliases: all
@@ -416,7 +416,22 @@ ifeq ($(uname), Linux)
         ln -s -f Snapshot~-help.pd snapshot~-help.pd
 endif
 
+all: cyclist
+
 SHARED_DIR=shared
-cyclist: $(SHARED_DIR)/common/binport.c \
-	$(SHARED_DIR)/common/lex.c $(SHARED_DIR)/unstable/standalone.c 
+cyclist$(exe.extension): $(SHARED_DIR)/common/binport.c \
+	$(SHARED_DIR)/common/lex.c \
+	$(SHARED_DIR)/unstable/standalone.c 
 	$(CC) -I$(SHARED_DIR) -DMIXED_STANDALONE $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
+
+install-cyclist: cyclist
+	$(INSTALL_DIR) -v "$(installpath)"
+	$(INSTALL_PROGRAM) cyclist* "$(installpath)"
+
+clean: clean-cyclist
+
+clean-cyclist:
+	rm -f cyclist$(exe.extension)
+	rm -f $(SHARED_DIR)/common/lex.o
+	rm -f $(SHARED_DIR)/unstable/standalone.o
+	rm -f $(SHARED_DIR)/common/binport.o
