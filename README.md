@@ -2,7 +2,7 @@ This is a forked version of https://svn.code.sf.net/p/pure-data/svn/trunk/extern
 
 <hr>
 
-pd-cyclone is a 'fork' of https://svn.code.sf.net/p/pure-data/svn/trunk/externals/miXed/cyclone (via the https://git.puredata.info/cgit/svn2git/libraries/miXed.git/ migrated repository). It is cleaned to contain only the cyclone functionality. Other parts of the miXed library are either moved (pddp) or unmaintained (toxy, ViCious, riddle).
+pd-cyclone is a 'fork' of https://svn.code.sf.net/p/pure-data/svn/trunk/externals/miXed/cyclone (via the https://git.puredata.info/cgit/svn2git/libraries/miXed.git/ migrated repository). It is cleaned to contain only the cyclone functionality. Other parts of the miXed library are either moved (pddp) or unmaintained (toxy, ViCious, riddle). Cyclone and miXed is written by Krzysztof Czaja. A copy of the original cyclone page is available here: http://fjkraan.home.xs4all.nl/digaud/puredata/cyclone/cyclone_site/cyclone.html
 
 Within the cyclone file set, the transition to a new build system, started with 0.1-alpha57 is completed. The initial version at this github repository will be 0.2beta1.
 
