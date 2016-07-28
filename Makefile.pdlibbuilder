@@ -1,5 +1,7 @@
-# Makefile.pdlibbuilder version 0.2.3, dated 2016-03-29
-#
+# Makefile.pdlibbuilder dated 2016-06-26
+
+version = 0.2.5
+
 # Helper makefile for Pure Data external libraries.
 # Written by Katja Vetter March-June 2015 for the public domain. No warranties.
 # Inspired by Hans Christoph Steiner's Makefile Template and Stephan Beal's
@@ -685,6 +687,9 @@ ifdef pdincludepath
   mpdh := $(shell ls "$(pdincludepath)/m_pd.h")
 endif
 
+# print Makefile.pdlibbuilder version
+$(info ++++ info: using Makefile.pdlibbuilder version $(version))
+
 # when making target all, check if m_pd.h is found and print info about it
 ifeq ($(goals), all)
   $(if $(mpdh), \
@@ -891,7 +896,7 @@ $(foreach v, $(classes), $(eval $(declare-class-executable-target)))
 oldfat := $(and $(filter ppc i386, $(machine)), \
           $(filter-out 0 1, $(words $(filter -arch, $(c.flags)))))
 
-disable-dependency-tracking := pdincludepathwithspaces oldfat
+disable-dependency-tracking := $(strip $(pdincludepathwithspaces) $(oldfat))
 
 ifndef disable-dependency-tracking
   must-build-everything := $(filter all, $(goals))
@@ -901,8 +906,9 @@ endif
 
 # declare implicit prerequisites rule like 'object.o: header1.h header2.h ...'
 # argument $1 is input source file(s)
+# dir is explicitly added because option -MM strips it by default
 define declare-object-target
-$(filter %.o: %.h, $(shell $(CPP) $(c.flags) -MM $1)) $(MAKEFILE_LIST)
+$(dir $1)$(filter %.o: %.h, $(shell $(CPP) $(c.flags) -MM $1)) $(MAKEFILE_LIST)
 endef
 
 # evaluate implicit prerequisite rules when rebuilding everything

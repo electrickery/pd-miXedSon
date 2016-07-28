@@ -422,7 +422,7 @@ ifeq ($(uname), Linux)
         ln -s -f Snapshot~-help.pd snapshot~-help.pd
 endif
 
-all: cyclist
+all: cyclist$(exe.extension)
 
 SHARED_DIR=shared
 cyclist$(exe.extension): $(SHARED_DIR)/common/binport.c \
@@ -430,7 +430,7 @@ cyclist$(exe.extension): $(SHARED_DIR)/common/binport.c \
 	$(SHARED_DIR)/unstable/standalone.c 
 	$(CC) -I$(SHARED_DIR) -DMIXED_STANDALONE $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
-install-cyclist: cyclist
+install-cyclist: cyclist$(exe.extension)
 	$(INSTALL_DIR) -v "$(installpath)"
 	$(INSTALL_PROGRAM) cyclist* "$(installpath)"
 
