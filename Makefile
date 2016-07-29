@@ -356,11 +356,14 @@ LICENSE.txt \
 README.md \
 cyclone-meta.pd
 
-# pthreadGC2.dll is required for Windows installation. It can be found in
-# the MinGW directory (usually C:\MinGW\bin) directory and should be 
-# copied to the current directory before installation or packaging.
+# the coll object requires pthreadGC2.dll and libgcc_s_dw2-1.dll 
+# to be present in the search PATH. For installations without MinGW 
+# present these need to be added somewhere. The files can be found 
+# in the MinGW directory (usually C:\MinGW\bin) directory and 
+# should be copied to the current directory before installation 
+# or packaging.
 ifeq (MINGW,$(findstring MINGW,$(uname)))
-  datafiles += pthreadGC2.dll
+  datafiles += pthreadGC2.dll libgcc_s_dw2-1.dll
 endif
 
 ################################################################################
