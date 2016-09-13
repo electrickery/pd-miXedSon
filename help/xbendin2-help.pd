@@ -1,4 +1,4 @@
-#N canvas 620 82 559 499 10;
+#N canvas 1063 79 559 499 10;
 #X obj 0 471 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 274 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
@@ -29,7 +29,7 @@ objects 7 + 7 bit;
 0;
 #X obj 0 415 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
 0;
-#N canvas 420 579 427 123 Related_objects 0;
+#N canvas 594 494 427 123 Related_objects 0;
 #X obj 0 0 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
 #X text 6 1 Related Objects;
 #X obj 12 37 cyclone/xbendin;
@@ -50,11 +50,11 @@ objects 7 + 7 bit;
 ;
 #X text 113 349 float;
 #X obj 490 12 xbendin2;
-#X floatatom 187 247 5 0 0 0 - - -;
-#X floatatom 187 56 5 0 0 0 - - -;
-#X floatatom 292 247 5 0 0 0 - - -;
-#X floatatom 298 56 5 0 0 0 - - -;
-#X floatatom 242 56 5 0 0 0 - - -;
+#X floatatom 187 247 5 0 0 0 - - -, f 5;
+#X floatatom 187 56 5 0 0 0 - - -, f 5;
+#X floatatom 292 247 5 0 0 0 - - -, f 5;
+#X floatatom 298 56 5 0 0 0 - - -, f 5;
+#X floatatom 242 56 5 0 0 0 - - -, f 5;
 #X text 96 387 1) float;
 #X text 180 387 - initial channel number;
 #X text 180 325 - Most Significant Byte (msb);
@@ -68,9 +68,12 @@ objects 7 + 7 bit;
 #X obj 187 177 cyclone/xbendin2 1;
 #X text 12 23 deconstruct extra precision midi pitchbend objects 7
 + 7 bit;
+#X obj 242 77 t b f;
 #X connect 16 0 29 0;
 #X connect 18 0 29 2;
-#X connect 19 0 29 1;
+#X connect 19 0 32 0;
 #X connect 29 0 30 0;
 #X connect 30 0 15 0;
 #X connect 30 1 17 0;
+#X connect 32 0 29 0;
+#X connect 32 1 29 1;
