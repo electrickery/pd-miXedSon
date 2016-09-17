@@ -4,6 +4,34 @@ TODO for cyclone
 
 DONE for cyclone
 
+02.-beta3
+  * fixed building cyclist in Makefile on Windows
+  * removed the thread functionality from coll as it causes distribution problems for Windows. Coll is not a very good object, so is not considered worth the trouble.
+
+0.2-beta2
+  * added copying some thread related DLLs to the Makefile. This is a real kludge, as there is no way to locate these files.
+  * fixed som ereported bugs
+  * replaced teeth~ abstraction by a real object
+  * added support for cyclist, and improved its API somewhat. It is intended to convert compressed Max 4.x patches to uncompressed versions.
+  * fixed [bufsize) thop in Scope~
+
+0.2-beta1
+  * added [resize( and [grbg r g b( messages to Scope~
+  * added [clear( to delay~
+  * made sure signal objects are [dsp( proof
+
+0.1-alpha57
+  * fixed "bits <int>" message for bitand~, bitor~ and bitxor~,
+  * fixed crash on "set <min>" message ,
+  * added "pause", "resume" and "stop" messages and behaviour,
+  * fixed poltocar~ phase polarity
+  * fixed rand~ argument,
+  * changed in arsic/vefl.c the call of garray_getfloatarray to garray_getfloatwords and the calling code in buffir~, index~, lookup~, peek~, play~, poke~, record~ and wave~ perform methods,
+  * fixed the file handling in funbuff,
+  * fixed the seed argument in decide, and made normal behaviour more random.
+
+alpha56
+
 alpha55
   * new class: overdrive~
   * seq:
