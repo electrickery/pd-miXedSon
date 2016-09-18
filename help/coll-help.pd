@@ -1,5 +1,5 @@
-#N canvas 398 80 571 530 10;
-#X obj 0 850 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
+#N canvas 396 81 571 530 10;
+#X obj 0 809 cnv 15 552 21 empty empty empty 20 12 0 14 -233017 -33289
 0;
 #X obj 0 422 cnv 3 550 3 empty empty inlets 8 12 0 13 -228856 -1 0
 ;
@@ -22,7 +22,7 @@
 Wilkes for Pd-extended 0.42 to conform to the PDDP template. Alex Cleveland
 updated this patch for Pd-l2ork version 2013.05.28. Fred Jan Kraan
 adapted the patch to pd-extended 2015-02-02;
-#X restore 501 852 pd META;
+#X restore 501 811 pd META;
 #X obj 0 555 cnv 3 550 3 empty empty outlets 8 12 0 13 -228856 -1 0
 ;
 #X obj 0 663 cnv 3 550 3 empty empty arguments 8 12 0 13 -228856 -1
@@ -34,7 +34,7 @@ adapted the patch to pd-extended 2015-02-02;
 #X obj 10 53 cyclone/buddy;
 #X obj 10 30 cyclone/funbuff;
 #C restore;
-#X restore 197 852 pd Related_objects;
+#X restore 197 811 pd Related_objects;
 #X obj 82 593 cnv 17 3 17 empty empty 1 5 9 0 16 -228856 -162280 0
 ;
 #X obj 0 0 cnv 15 552 40 empty empty coll 3 12 0 18 -204280 -1 0;
@@ -54,7 +54,7 @@ adapted the patch to pd-extended 2015-02-02;
 #C restore;
 #X obj 82 432 cnv 17 3 110 empty empty 0 5 9 0 16 -228856 -162280 0
 ;
-#X obj 0 745 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
+#X obj 0 704 cnv 3 550 3 empty empty more_info 8 12 0 13 -228856 -1
 0;
 #N canvas 29 103 559 936 allMessages 0;
 #X text 0 43 clear;
@@ -355,7 +355,7 @@ value);
 #X obj 2 1 cnv 15 425 20 empty empty empty 3 12 0 14 -204280 -1 0;
 #X restore 399 447 pd orderByFunction;
 #X text 219 445 messages ordered by function:;
-#X text 88 763 The coll object implements an associative array of items.
+#X text 88 722 The coll object implements an associative array of items.
 The Pd types float \, symbol and list can be stored. The elements have
 a float or symbol as 'address'. The float address however should not
 be interpreted as an index of an array \, but merely as a directive
@@ -605,10 +605,6 @@ value;
 #X connect 15 0 14 0;
 #X restore 350 370 pd insert merge nsub nth sub;
 #X text 417 224 More examples:;
-#X text 81 697 2) float;
-#X text 209 696 - flag to enable threaded loading and saving data.
-0 or absent is disabled \, 1 is enabled. This allows for reading and
-writing data without dropouts.;
 #X text 52 55 Store \, recall and delete with float or symbol addresses
 ;
 #X text 52 68 and symbol \, float or list values;
