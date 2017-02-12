@@ -124,6 +124,7 @@ typedef struct _scopehandle
     int        h_dragon;
     int        h_dragx;
     int        h_dragy;
+    int        h_selectedmode;
 } t_scopehandle;
 
 static t_class *scope_class;
@@ -603,8 +604,12 @@ static void scope_select(t_gobj *z, t_glist *glist, int state)
 	sys_vgui(".x%lx.c itemconfigure %s -outline blue -width %f -fill %s\n",
 		 cv, x->x_bgtag, SCOPE_SELBDWIDTH, SCOPE_SELCOLOR);
 
+	if (sh->h_selectedmode == 0) {
 	sys_vgui("canvas %s -width %d -height %d -bg #fedc00 -bd 0\n",
-		 sh->h_pathname, SCOPEHANDLE_WIDTH, SCOPEHANDLE_HEIGHT);
+		sh->h_pathname, SCOPEHANDLE_WIDTH, SCOPEHANDLE_HEIGHT);
+		sh->h_selectedmode = 1;
+	}
+
 	sys_vgui(".x%lx.c create window %f %f -anchor nw\
  -width %d -height %d -window %s -tags %s\n",
 		 cv, x2 - (SCOPEHANDLE_WIDTH - SCOPE_SELBDWIDTH),
@@ -624,6 +629,7 @@ static void scope_select(t_gobj *z, t_glist *glist, int state)
  -fill #%2.2x%2.2x%2.2x\n", cv, x->x_bgtag, SCOPE_GRIDWIDTH,
 		 x->x_bgred, x->x_bggreen, x->x_bgblue);
 	sys_vgui("destroy %s\n", sh->h_pathname);
+	sh->h_selectedmode = 0;
     }
 }
 
@@ -840,6 +846,7 @@ static void scope_vis(t_gobj *z, t_glist *glist, int vis)
     if (vis)
     {
 	t_scopehandle *sh = (t_scopehandle *)x->x_handle;
+	scope_select((t_gobj *)x, x->x_glist, 0); // deselect
 #if FORKY_VERSION < 37
 	rtext_new(glist, t, glist->gl_editor->e_rtext, 0);
 #endif
@@ -1063,6 +1070,7 @@ static void *scope_new(t_symbol *s, int ac, t_atom *av)
     pd_bind(x->x_handle, sh->h_bindsym = gensym(buf));
     sprintf(sh->h_outlinetag, "h%lx", (unsigned long)sh);
     sh->h_dragon = 0;
+    sh->h_selectedmode = 0;
     return (x);
 }
 
