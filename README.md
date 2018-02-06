@@ -20,15 +20,16 @@ PdLibBuilder tries to find the Pd source directory at several common locations, 
 
 <pre>make pdincludepath=~/pd-0.46-6/src/  (for Windows/MinGW add 'pdbinpath=~/pd-0.46-6/bin/)</pre>
 
-<strong>Installing with pdlibbuilder</strong>
-
-The default path for installing might not be the best, surely for testing. Use the pkglibdir variable for this. Example:
-
-<pre>make install pkglibdir=~/pd-externals/</pre>
-
 If the user installs pd-lib-builder separately, they can just point the buildsystem to their installation, e.g. to get the latest and greatest features of pd-lib-builder.
 
 e.g. on Debian systems do:
 
 <pre>sudo apt-get install pd-lib-builder
 make PDLIBBUILDER_DIR=/usr/share/pd-lib-builder/</pre>
+
+<strong>Installing with pdlibbuilder</strong>
+
+The default path for installing might not be the best, surely for testing. Use the pkglibdir variable for this. Example:
+
+<pre>make install pkglibdir=~/pd-externals/</pre>
+
