@@ -4,6 +4,9 @@ TODO for cyclone
 
 DONE for cyclone
 
+  * removed thread functionality from coll-help
+  * merged pull request #10 to allow external pd-lib-builder
+
 02.-beta3
   * fixed building cyclist in Makefile on Windows
   * removed the thread functionality from coll as it causes distribution problems for Windows. Coll is not a very good object, so is not considered worth the trouble.
