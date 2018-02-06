@@ -366,7 +366,8 @@ cyclone-meta.pd
 
 externalsdir = ../..
 
-include $(firstword $(wildcard Makefile.pdlibbuilder \
+PDLIBBUILDER_DIR=.
+include $(firstword $(wildcard $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder \
   $(externalsdir)/Makefile.pdlibbuilder))
 
 
