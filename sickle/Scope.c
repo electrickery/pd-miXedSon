@@ -147,7 +147,7 @@ static t_int *scope_monoperform(t_int *w)
     int bufsize = x->x_bufsize;
     if (bufphase < bufsize)
     {
-	int nblock = (int)(w[2]);
+	int nblock = (w[2]);
 	if (x->x_precount >= nblock)
 	    x->x_precount -= nblock;
 	else
@@ -236,13 +236,19 @@ static t_int *scope_monoperform(t_int *w)
 }
 
 static t_int *scope_xyperform(t_int *w)
+/*{
+        return (w + 5);
+} 
+
+static t_int *scope_xyperformNOT(t_int *w)
+*/
 {
     t_scope *x = (t_scope *)(w[1]);
     int bufphase = x->x_bufphase;
     int bufsize = x->x_bufsize;
     if (bufphase < bufsize)
     {
-	int nblock = (int)(w[2]);
+	int nblock = (w[2]);
 	if (x->x_precount >= nblock)
 	    x->x_precount -= nblock;
 	else
@@ -679,7 +685,7 @@ static void scope_drawfgxy(t_scope *x, t_canvas *cv,
     float *xbp = x->x_xbuffer, *ybp = x->x_ybuffer;
     char chunk[200 * SCOPE_GUICHUNKXY];  /* LATER estimate */
     char *chunkp = chunk;
-    char cmd1[64], cmd2[64];
+    char cmd1[64], cmd2[168]; /* enlarged for bigger int size */
     float xx, yy, xsc, ysc;
     xx = yy = 0;
     /* subtract 1-pixel margins, see below */
@@ -1008,6 +1014,11 @@ static void scopehandle__motionhook(t_scopehandle *sh,
     }
 }
 
+void scope_status(t_scope *x) {
+        printf("----====#### Scope status ####====----\n");
+        printf("x->x_period    %d\n", x->x_period);
+}
+
 static void scope_free(t_scope *x)
 {
     if (x->x_clock) clock_free(x->x_clock);
@@ -1105,6 +1116,7 @@ void Scope_tilde_setup(void)
      class_addmethod(scope_class, (t_method)scope_resize,
 		    gensym("resize"),
 		    A_FLOAT, A_FLOAT, 0);
+    class_addmethod(scope_class, (t_method)scope_status, gensym("status"), 0);            
     class_setwidget(scope_class, &scope_widgetbehavior);
     forky_setsavefn(scope_class, scope_save);
     scopehandle_class = class_new(gensym("_scopehandle"), 0, 0,
